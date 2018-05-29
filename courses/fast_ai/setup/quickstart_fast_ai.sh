@@ -4,8 +4,8 @@ sudo apt-get update
 sudo apt-get install python3.6
 
 # Install deps for Python 3.6
-conda create -n py36 python=3.6
-source activate py36
+conda create -n anpy36 python=3.6
+source activate anpy36
 conda install pytorch torchvision -c pytorch
 pip install bcolz opencv-python graphviz sklearn_pandas sklearn tqdm isoweek pandas_summary
 
