@@ -6,8 +6,10 @@ sudo apt-get install python3.6
 # Install deps for Python 3.6
 conda create -n anpy36 python=3.6
 source activate anpy36
+pip install ipykernel
+python -m ipykernel install --name py36-test --user
 conda install pytorch torchvision -c pytorch
-pip install bcolz opencv-python graphviz sklearn_pandas sklearn tqdm isoweek pandas_summary
+pip install opencv-python graphviz sklearn_pandas sklearn tqdm isoweek pandas_summary bcolz
 
 # Get code from latest git
 git clone https://github.com/fastai/fastai.git
