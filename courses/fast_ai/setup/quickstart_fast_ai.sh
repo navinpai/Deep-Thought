@@ -8,9 +8,8 @@ conda create -n anpy36 python=3.6
 source activate anpy36
 pip install ipykernel
 python -m ipykernel install --name py36-test --user
-conda install pytorch torchvision -c pytorch
 conda install bcolz -c conda-forge
-pip install opencv-python graphviz sklearn_pandas sklearn tqdm isoweek pandas_summary
+pip install opencv-python graphviz sklearn_pandas sklearn tqdm isoweek pandas_summary seaborn matplotlib ipywidgets torchtext torch torchvision
 
 # Get code from latest git
 git clone https://github.com/fastai/fastai.git
