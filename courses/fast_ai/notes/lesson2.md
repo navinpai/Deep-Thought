@@ -15,6 +15,10 @@ AdaDelta resolves the problem of monotonically decreasing learning rate in AdaGr
 
 Adam or adaptive momentum is an algorithm similar to AdaDelta. But in addition to storing learning rates for each of the parameters it also stores momentum changes for each of them separately.
 
+![optim-1](https://i.stack.imgur.com/qAx2i.gif)
+
+![optim-2](https://i.stack.imgur.com/1obtV.gif)
+
 
 ### References
 
