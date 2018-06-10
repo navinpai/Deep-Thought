@@ -23,3 +23,4 @@ Adam or adaptive momentum is an algorithm similar to AdaDelta. But in addition t
 ### References
 
 [Gradient Descent vs Adagrad vs Momentum in TensorFlow](https://stackoverflow.com/questions/36162180/gradient-descent-vs-adagrad-vs-momentum-in-tensorflow)
+[Gentle Introduction to the Adam Optimization Algorithm for Deep Learning](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/)
