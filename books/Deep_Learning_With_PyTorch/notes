@@ -7,10 +7,10 @@
 #### Types of Tensors
 -  `torch.Tensor` is alias for default tensor type i.e `torch.FloatTensor`
 -  `x = torch.Tensor([3.1]) # 0-D tensors aka scalars` - 1-D tensors with 1 element
--  `x = torch.FloatTensor([1,2,3,4,5])` 
+-  `x = torch.FloatTensor([1,2,3,4,5])`
 -  `b = np.array([[1,2,3]. [4,5,6], [7,8,9])` then `a = torch.from_numpy(b)` gives a 2-D tensor
 -  `a = np.array(Image.open('img.jpg').resize(224,224))` then `a = torch.from_numpy(a)` gives 3-D tensor of dim `224*224*3`
 
-- Tensors can be moved to GPU using .cuda() eg. `a = a.cuda()` 
+- Tensors can be moved to GPU using .cuda() eg. `a = a.cuda()`
 - Variable = Tensor (data) + gradient + reference to function that created it
 - Gradient = rate of change of loss function wrt `(W,b)``])`
