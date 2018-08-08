@@ -14,3 +14,15 @@
 - Tensors can be moved to GPU using .cuda() eg. `a = a.cuda()`
 - Variable = Tensor (data) + gradient + reference to function that created it
 - Gradient = rate of change of loss function wrt `(W,b)``])`
+
+#### Grad Calculation
+- `x = torch.tensor(torch.ones(2,2), requires_grad=True) `
+- `y = x.mean()` # Makes y a 0-D Tensor with value 1 and grad_fn MeanBackward1
+- `y.backward()` makes `x.grad` = [[1,1],[1,1]] # Before call to backward x.grad is None
+- `x.grad.zero_()` # Zeroes the gradients
+
+`d/dx` the variable on which backward is called, and that gives value of gradient of x.
+- `z = x**2` # Makes z a 0-D Tensor with value 1 and grad_fn MeanBackward1
+- `z.backward(gradient=torch.ones(z.size()))` makes `x.grad` = [[2,2],[2,2]]
+
+- Also remember that gradients are accumulated. So if `y = x**2` and `z = x**3` and we call backward on both `z` and `y`, `x.grad` will be 5 (because 2+3). Hence zero-ing out gradients is necessary
