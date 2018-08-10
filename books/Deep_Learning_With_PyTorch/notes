@@ -25,4 +25,8 @@
 - `z = x**2` # Makes z a 0-D Tensor with value 1 and grad_fn MeanBackward1
 - `z.backward(gradient=torch.ones(z.size()))` makes `x.grad` = [[2,2],[2,2]]
 
-- Also remember that gradients are accumulated. So if `y = x**2` and `z = x**3` and we call backward on both `z` and `y`, `x.grad` will be 5 (because 2+3). Hence zero-ing out gradients is necessary
+- Also remember that [gradients are accumulated](https://medium.com/@zhang_yang/how-pytorch-tensors-backward-accumulates-gradient-8d1bf675579b). So if `y = x**2` and `z = x**3` and we call backward on both `z` and `y`, `x.grad` will be 5 (because 2+3). Hence zero-ing out gradients is necessary
+
+#### Learnable Params
+
+These are tensors/params for which we have `requires_grad=True` . Usually, for inputs, we keep `requires_grad=False` because we don't want to change the input. In `Y = W*x + b` , `y` and `x` have `False` while `W` and `b` have `requires_gradient = True`
