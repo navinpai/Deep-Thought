@@ -30,3 +30,23 @@
 #### Learnable Params
 
 These are tensors/params for which we have `requires_grad=True` . Usually, for inputs, we keep `requires_grad=False` because we don't want to change the input. In `Y = W*x + b` , `y` and `x` have `False` while `W` and `b` have `requires_gradient = True`
+
+- `r = torch.nn.ReLU()` followed by `r(torch.tensor([1.,2.,3.,0.,-1.]))` gives `tensor([1., 2., 3., 0., 0.])`
+- Similarly can also do with `LeakyReLU()`
+
+#### Creating a network
+
+- Create class extending `nn.Module` and implement `__init__()` and `forward()` methods.
+- Layers are defined in `__init__()` and their interactions in `forward()`
+- Once network is ready, we simply need to calculate Loss (which *has* to be a scalar) using some Loss function and a Optimiser
+- Loss in PyTorch methods is `loss(prediction, actual)`
+- `opt = optim.SGD(model.parameters(), lr=0.01)`. Here we give learning rate and learnable params to the optimizer.
+
+```
+for inp, tgt in dataset:
+    opt.zero_grad() # Zeroes out gradients of learnable params to prevent accumulation (default behaviour)
+    op = model(inp)
+    loss = loss_fm(op, tgt)
+    loss.backward()
+    opt.step() # This performs actual update of learnable params
+```
