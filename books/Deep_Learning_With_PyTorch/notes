@@ -87,3 +87,19 @@ def imshow(inp):
    plt.imshow(inp)
 
 ```
+
+#### Overfitting 
+
+Decreased by:
+
+- Getting more data
+- Reducing Network size/layers
+- Simpler models using L1/L2 regularization of weights. (L1 = Sum of abs value of weight coeff added to cost while L2 = Sum of squares of weight coeff added)
+- L2 can be applied to Optimizer as `opt = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=1e-5)` where weight decay is L2
+- Dropout 
+
+```
+d = torch.nn.Dropout()
+inp = torch.tensor([1.,2.,3.,4.,5.,6.])
+
+```
