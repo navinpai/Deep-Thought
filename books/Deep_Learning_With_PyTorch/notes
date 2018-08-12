@@ -50,3 +50,40 @@ for inp, tgt in dataset:
     loss.backward()
     opt.step() # This performs actual update of learnable params
 ```
+
+#### Loading Data
+
+Assuming we have 2 directories `valid` and `train` and each dir has `N` dirs each consisting one class. You can load using
+
+```
+from torchvision import transforms
+from torchvision.datasets import ImageFolder
+
+trfs = transforms.Compose([transforms.Resize((225,225)), 
+                           transforms.ToTensor(), 
+                           transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
+
+train = ImageFolder('path/to/train/', trfs)
+train.classes # Prints out classes
+train.class_to_idx # Prints out classes with index
+
+# train[0] has the whole image (3 matrix for RGB) along with class_index `([[[][]],[[],[]]], 0)`
+
+train_dataloader = torch.utils.data.DataLoader(train, batch_size=64, num_workers=3)
+
+```
+Here, num_workers is for parallelization and is usually set to less than number of cores of machine.
+
+Helper method to display a normalised tensor as image
+
+
+```
+def imshow(inp):
+   inp = inp.numpy().transpose([1, 2, 0])
+   mean = np.array([0.485, 0.456, 0.406])
+   std = np.array([0.229, 0.224, 0.225])
+   inp = std * inp + mean
+   inp = inp.clip(0,1)
+   plt.imshow(inp)
+
+```
