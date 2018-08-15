@@ -63,6 +63,8 @@ trfs = transforms.Compose([transforms.Resize((225,225)),
                            transforms.ToTensor(), 
                            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
 
+# Other transforms include transforms.RandomHorizontalFlip() and transforms.RandomRotation(0.2)
+
 train = ImageFolder('path/to/train/', trfs)
 train.classes # Prints out classes
 train.class_to_idx # Prints out classes with index
