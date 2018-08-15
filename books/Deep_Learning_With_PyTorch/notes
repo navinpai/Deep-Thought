@@ -105,3 +105,25 @@ d = torch.nn.Dropout()
 inp = torch.tensor([1.,2.,3.,4.,5.,6.])
 
 ```
+
+#### Picking Learning Rate
+
+- StepLR: Reduce LR by gamma times every N steps `sc = StepLR(optimizer, step_size=20, gamma=0.1)`
+- MultiStepLR: Steps are different sizes `sc = MultiStepLR(optimizer, milestones=[30,80], gamma=0.1`
+- ExponentialLR: Exponentially decrease LR
+
+```
+for epoch in epochs:
+    scheduler.step() # to increment step
+```
+
+- ReduceLROnPlateau: `sc = ReduceLRRateOnPlateau(optimizer, 'min')`
+
+```
+for epoch in epochs:
+    .
+    .
+    val_loss = calc_loss()
+    sc.step(val_loss)
+```
+
