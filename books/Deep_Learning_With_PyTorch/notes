@@ -127,3 +127,51 @@ for epoch in epochs:
     sc.step(val_loss)
 ```
 
+#### CNN 
+- The mean and std deviation for a dataset can be [calculated like this if needed](http://forums.fast.ai/t/image-normalization-in-pytorch/7534/7)
+- In Neural Style Transfer, the input layer has `requires_gradient = True` since we are editing the input image itself (and miniziming 2 losses: content loss and style loss)
+
+
+#### Image Kernels
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Kernel_(image_processing))
+- Identity
+
+```
+0 0 0 
+0 1 0
+0 0 0
+```
+
+- Edge Detection
+
+```
+ 1  0 -1     -1 -1 -1
+ 0  0  0  or -1  8 -1
+-1  0  1     -1 -1 -1
+```
+
+- Sharpen
+
+```
+ 0 -1  0
+-1  5 -1
+ 0 -1  0
+```
+
+- Gaussian Blur
+
+```
+1/16 * 1 2 1
+       2 4 2
+       1 2 1
+```
+
+- Box Blur
+
+```
+1/9 * 1 1 1
+      1 1 1
+      1 1 1
+```
+
