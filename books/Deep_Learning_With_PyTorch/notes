@@ -175,3 +175,14 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Kernel_(image_processing))
       1 1 1
 ```
 
+#### Layers of NN
+
+Conv Layers
+
+```
+self.conv1 = nn.Conv2d(3,10, kernel_size=5)
+
+# Here 3 is number of channels (RGB, this would be 1 for greyscale) , 10 is number of outchannels (and decides how many kernels are applied)
+# And size is simply the kernel size
+```
+
