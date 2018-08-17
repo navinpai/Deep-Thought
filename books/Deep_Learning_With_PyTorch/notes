@@ -186,3 +186,22 @@ self.conv1 = nn.Conv2d(3,10, kernel_size=5)
 # And size is simply the kernel size
 ```
 
+Convolutional layers are usually followed by pooling layers (With dropout applied to conv layer output) to reduce size of data and to allow better generalization
+
+- MaxPool simply picks the max value from the set
+
+We usually see Non-linear layers after pooling layers
+
+- This simply operates on every element of the layer matrix
+
+View is used to reshape the layer
+
+```
+x =torch.tensor([[[1.,2.,3.],[4.,5.,6.],[7.,8.,9.]],[[2.,3.,4.],[5.,.6,7.],[3.,2.,1.]]])
+x.view(-1, 9) # Flattens the layer. -1 says don't flatten the first dimension
+tensor([[1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000],
+        [2.0000, 3.0000, 4.0000, 5.0000, 0.6000, 7.0000, 3.0000, 2.0000, 1.0000]])
+
+x.view(-1)
+tensor([1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000, 2.0000, 3.0000, 4.0000, 5.0000, 0.6000, 7.0000, 3.0000, 2.0000, 1.0000])
+```
