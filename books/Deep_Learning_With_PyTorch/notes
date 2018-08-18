@@ -205,8 +205,30 @@ tensor([[1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000]
 x.view(-1)
 tensor([1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000, 2.0000, 3.0000, 4.0000, 5.0000, 0.6000, 7.0000, 3.0000, 2.0000, 1.0000])
 ```
+
 #### Training/Validation
 
 - We call `model.train()` before training step and `model.eval()` before validation. The latter sets `self.training = True` for each module in the model, allowing things like pass-through Dropout (i.e Dropout has no effect) and BatchNorm. By default all modules are initialized in `train` mode.
 - The entire model can be moved to GPU using `model.cuda()`
 
+#### Transfer Learning
+
+- Pretrained models have features and classifiers
+- For VGG we can freeze the convolutional layers(called `features` in VGG) and simply retrain the fully connected dense layers (called `classifier` in VGG) with out data.
+
+```
+from torchvision import models
+vgg = models.vgg16(pretrained=True)
+
+for param in vgg.features.parameters(): param.requires_grad = False # Locks the layer weights of the model
+
+vgg.classifier[6].out_features = 2 # Assuming we want to train for binary classification, We update the final linear layer
+
+optimizer = optim.SGD(vgg.classifier.parameters(), lr= 0.001, momentum = 0.5)
+
+# With just 20 epochs this gave good results on Dogs vs Cats (>98%)
+
+for layer in vgg.classifier.children():
+    if(type(layer) == nn.Dropout):
+        layer.p = 0.2 # Change from 0.5 to 0.2 
+```
