@@ -205,3 +205,8 @@ tensor([[1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000]
 x.view(-1)
 tensor([1.0000, 2.0000, 3.0000, 4.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000, 2.0000, 3.0000, 4.0000, 5.0000, 0.6000, 7.0000, 3.0000, 2.0000, 1.0000])
 ```
+#### Training/Validation
+
+- We call `model.train()` before training step and `model.eval()` before validation. The latter sets `self.training = True` for each module in the model, allowing things like pass-through Dropout (i.e Dropout has no effect) and BatchNorm. By default all modules are initialized in `train` mode.
+- The entire model can be moved to GPU using `model.cuda()`
+
