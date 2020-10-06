@@ -7,6 +7,7 @@
 ### Papers
 
 - *Designing Great Data Products* by *Jeremy Howard, Margit Zwemer and Mike Loukides* ([pdf](https://www.oreilly.com/radar/drivetrain-approach-data-products/))
+- *Super-Convergence: Very Fast Training of NeuralNetworks Using Large Learning Rates* by *Leslie N. Smith and Nicholay Topin* ([pdf](https://arxiv.org/pdf/1708.07120.pdf))
 
 
 ### Code Samples
@@ -59,6 +60,27 @@ learn = text_classifier_learner(dls, AWD_LSTM, drop_mult=0.5, metrics=accuracy)
 learn.fine_tune(4, 1e-2)
 
 learn.predict("I really liked that movie!")
+```
+
+#### Tabular Data
+
+```
+from fastai.tabular.all import *
+path = untar_data(URLs.ADULT_SAMPLE)
+
+dls = TabularDataLoaders.from_csv(path/'adult.csv', path=path, y_names="salary",
+    cat_names = ['workclass', 'education', 'marital-status', 'occupation',
+                 'relationship', 'race'],
+    cont_names = ['age', 'fnlwgt', 'education-num'],
+    procs = [Categorify, FillMissing, Normalize])
+
+learn = tabular_learner(dls, metrics=accuracy)
+
+# This makes use of the SuperConvergence paper
+learn.fit_one_cycle(4)
+
+# Predict here returns the input row as well
+row, clas, probs = learn.predict(df.iloc[0])
 ```
 
 ### References
